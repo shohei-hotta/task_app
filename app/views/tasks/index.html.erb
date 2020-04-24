@@ -7,6 +7,7 @@
     <tr>
       <th><%= Task.human_attribute_name(:name) %></th>
       <th><%= Task.human_attribute_name(:description) %></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.description %></td>
+        <td><%= link_to "詳細", task_path(task.id) %></td>
       </tr>
     <% end %>
   </tbody>
