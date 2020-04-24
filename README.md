@@ -31,7 +31,7 @@ FK：foreign_key
 |task_id(FK) |integer|
 |label_id(FK)|integer|
 
-### labelテーブル
+### labelsテーブル
 
 |column|type   |
 |------|-------|
