@@ -27,3 +27,4 @@
 
 <%= link_to "一覧", tasks_path %>
 <%= link_to "編集", edit_task_path %>
+<%= link_to "削除", task_path, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除してよろしいですか？" } %>
