@@ -1,24 +1,39 @@
 # README
+## DB設計
+FK：foreign_key
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### tasksテーブル
 
-Things you may want to cover:
+|column     |type    |
+|-----------|--------|
+|id         |integer |
+|name       |string  |
+|description|text    |
+|deadline   |datetime|
+|priority   |integer |
+|status     |string  |
 
-* Ruby version
+### usersテーブル
 
-* System dependencies
+|column         |type   |
+|---------------|-------|
+|id             |integer|
+|task_id(FK)    |integer|
+|name           |string |
+|email          |string |
+|password_digest|string |
 
-* Configuration
+### groupsテーブル
 
-* Database creation
+|column      |type   |
+|------------|-------|
+|id          |integer|
+|task_id(FK) |integer|
+|label_id(FK)|integer|
 
-* Database initialization
+### labelテーブル
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+|column|type   |
+|------|-------|
+|id    |integer|
+|name  |string |
