@@ -8,7 +8,7 @@ FK：foreign_key
 |-----------|--------|
 |id         |integer |
 |name       |string  |
-|description|text    |
+|description|string  |
 |deadline   |datetime|
 |priority   |integer |
 |status     |string  |
