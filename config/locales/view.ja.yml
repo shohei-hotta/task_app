@@ -15,5 +15,5 @@ ja:
       create_message: を登録しました。
       edit_message: を編集しました。
       destroy_message: を削除しました。
-      create_alert: を登録できませんでした。
-      edit_alert: を編集できませんでした。
+      create_alert: 登録できませんでした。
+      edit_alert: 編集できませんでした。
