@@ -1,10 +1,13 @@
 require "rails_helper"
 
 describe "タスク管理機能", type: :system do
+  before do
+    @task = FactoryBot.create(:task)
+  end
+
   describe "タスク一覧表示機能" do
     context "タスクを作成したとき" do
       before do
-        FactoryBot.create(:task, name: "最初のタスク")
         visit tasks_path
       end
 
@@ -15,7 +18,6 @@ describe "タスク管理機能", type: :system do
 
     context "複数のタスクを作成したとき" do
       before do
-        FactoryBot.create(:task, name: "最初のタスク")
         FactoryBot.create(:task, name: "次のタスク")
         visit tasks_path
       end
@@ -33,15 +35,13 @@ describe "タスク管理機能", type: :system do
       before do
         visit new_task_path
         fill_in "名称", with: "新規タスク"
-        fill_in "詳しい説明", with: "新規タスクの内容"
+        fill_in "詳しい説明", with: "新規タスクの説明"
         click_button "登録する"
       end
 
-      it "タスクの名称が保存される" do
+      it "タスクが保存される" do
         expect(page).to have_content "新規タスク"
-      end
-      it "タスクの内容が保存される" do
-        expect(page).to have_content "新規タスクの内容"
+        expect(page).to have_content "新規タスクの説明"
       end
     end
   end
@@ -49,9 +49,8 @@ describe "タスク管理機能", type: :system do
   describe "タスク詳細表示機能" do
     context "任意のタスクの詳細リンクを押したとき" do
       before do
-        task = FactoryBot.create(:task, name: "最初のタスク")
         visit tasks_path
-        click_link "詳細", href: task_path(task)
+        click_link "詳細", href: task_path(@task)
       end
 
       it "該当タスクの詳細画面に遷移する" do
