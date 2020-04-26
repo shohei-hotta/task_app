@@ -18,9 +18,9 @@ describe "タスク管理機能", type: :system do
     context "必要項目を入力して、createボタンを押したとき" do
       before do
         visit new_task_path
-        fill_in "Name", with: "新規タスク"
-        fill_in "Description", with: "新規タスクの内容"
-        click_button "Create Task"
+        fill_in "名称", with: "新規タスク"
+        fill_in "詳しい説明", with: "新規タスクの内容"
+        click_button "登録する"
       end
 
       it "タスクの名称が保存される" do
