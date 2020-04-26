@@ -12,6 +12,20 @@ describe "タスク管理機能", type: :system do
         expect(page).to have_content "最初のタスク"
       end
     end
+
+    context "複数のタスクを作成したとき" do
+      before do
+        FactoryBot.create(:task, name: "最初のタスク")
+        FactoryBot.create(:task, name: "次のタスク")
+        visit tasks_path
+      end
+
+      it "タスクが作成日時の降順で表示される" do
+        task_list = all("tbody tr")
+        expect(task_list[0]).to have_content "次のタスク"
+        expect(task_list[1]).to have_content "最初のタスク"
+      end
+    end
   end
 
   describe "タスク登録機能" do
