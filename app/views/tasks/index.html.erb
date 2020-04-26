@@ -1,6 +1,6 @@
-<h1>タスク一覧</h1>
+<h1><%= t("view.task.headline_index") %></h1>
 
-<%= link_to "新規登録", new_task_path %>
+<%= link_to t("view.task.link_new"), new_task_path %>
 
 <table>
   <thead>
@@ -15,9 +15,9 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.description %></td>
-        <td><%= link_to "詳細", task_path(task.id) %></td>
-        <td><%= link_to "編集", edit_task_path(task.id) %></td>
-        <td><%= link_to "削除", task_path(task.id), method: :delete, data: { confirm: "タスク「#{task.name}」を削除してよろしいですか？" } %></td>
+        <td><%= link_to t("view.task.link_show"), task_path(task.id) %></td>
+        <td><%= link_to t("view.task.link_edit"), edit_task_path(task.id) %></td>
+        <td><%= link_to t("view.task.link_destroy"), task_path(task.id), method: :delete, data: { confirm: "「#{task.name}」#{t("view.task.destroy_confirm")}" } %></td>
       </tr>
     <% end %>
   </tbody>

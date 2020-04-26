@@ -1,0 +1,19 @@
+ja:
+  view:
+    task:
+      headline_edit: タスクの編集
+      headline_index: タスクの一覧
+      headline_new: タスクの新規登録
+      headline_show: タスクの詳細
+      link_index: 一覧
+      link_new: 新規登録
+      link_show: 詳細
+      link_edit: 編集
+      link_destroy: 削除
+      destroy_confirm: を削除してよろしいですか？
+    flash:
+      create_message: を登録しました。
+      edit_message: を編集しました。
+      destroy_message: を削除しました。
+      create_alert: を登録できませんでした。
+      edit_alert: を編集できませんでした。

@@ -1,4 +1,4 @@
-<h1>タスクの詳細</h1>
+<h1><%= t("view.task.headline_show") %></h1>
 
 <table>
   <tbody>
@@ -25,6 +25,6 @@
   </tbody>
 </table>
 
-<%= link_to "一覧", tasks_path %>
-<%= link_to "編集", edit_task_path %>
-<%= link_to "削除", task_path, method: :delete, data: { confirm: "タスク「#{@task.name}」を削除してよろしいですか？" } %>
+<%= link_to t("view.task.link_index"), tasks_path %>
+<%= link_to t("view.task.link_edit"), edit_task_path %>
+<%= link_to t("view.task.link_destroy"), task_path, method: :delete, data: { confirm: "「#{@task.name}」#{t("view.task.destroy_confirm")}" } %>
