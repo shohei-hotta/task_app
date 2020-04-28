@@ -28,7 +28,7 @@ describe "タスク管理機能", type: :system do
         expect(task_list[1]).to have_content "最初のタスク"
       end
 
-      it "ソートボタンを押すと終了期限の昇順で表示される" do
+      it "ソートボタンを押すと終了期限の昇順で表示される", :retry =>3 do
         click_link "終了期限でソートする", href: tasks_path(sort_expired: "true")
         task_list = all("tbody tr")
         expect(task_list[0]).to have_content "最初のタスク"
