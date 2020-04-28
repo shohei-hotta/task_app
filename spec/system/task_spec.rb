@@ -43,7 +43,7 @@ describe "タスク管理機能", type: :system do
         visit new_task_path
         fill_in "名称", with: "新規タスク"
         fill_in "詳しい説明", with: "新規タスクの説明"
-        fill_in "終了期限", with: "2020/04/28"
+        fill_in "終了期限", with: "04/28/2020"
         click_button "登録する"
       end
 
