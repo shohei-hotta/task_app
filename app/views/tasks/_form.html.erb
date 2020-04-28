@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <%= f.label :deadline %>
-    <%= f.datetime_field :deadline, value: DateTime.current.strftime("%Y-%m-%d"), class: "form-control" %>
+    <%= f.date_field :deadline, value: Time.now.strftime("%Y年%m月%d日"), class: "form-control" %>
   </div>
   <%= f.submit nil, class: "btn btn-primary" %>
 <% end %>
