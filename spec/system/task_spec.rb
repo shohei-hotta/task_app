@@ -18,7 +18,7 @@ describe "タスク管理機能", type: :system do
 
     context "複数のタスクを作成したとき" do
       before do
-        FactoryBot.create(:task, name: "次のタスク")
+        FactoryBot.create(:task, name: "次のタスク", deadline: "2020-05-01 00:00:00 +0900")
         visit tasks_path
       end
 
@@ -26,6 +26,13 @@ describe "タスク管理機能", type: :system do
         task_list = all("tbody tr")
         expect(task_list[0]).to have_content "次のタスク"
         expect(task_list[1]).to have_content "最初のタスク"
+      end
+
+      it "ソートボタンを押すと終了期限の昇順で表示される" do
+        click_link "終了期限でソートする", href: tasks_path(sort_expired: "true")
+        task_list = all("tbody tr")
+        expect(task_list[0]).to have_content "最初のタスク"
+        expect(task_list[1]).to have_content "次のタスク"
       end
     end
   end
@@ -36,12 +43,16 @@ describe "タスク管理機能", type: :system do
         visit new_task_path
         fill_in "名称", with: "新規タスク"
         fill_in "詳しい説明", with: "新規タスクの説明"
+        #一旦放置
+        #fill_in "終了期限", with: DateTime.current.strftime("%m%d%Y\t%I%M%P")
         click_button "登録する"
       end
 
       it "タスクが保存される" do
         expect(page).to have_content "新規タスク"
         expect(page).to have_content "新規タスクの説明"
+        #一旦放置
+        #expect(page).to have_content 
       end
     end
   end
