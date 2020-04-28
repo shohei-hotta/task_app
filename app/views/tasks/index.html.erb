@@ -7,6 +7,7 @@
     <tr>
       <th><%= Task.human_attribute_name(:name) %></th>
       <th><%= Task.human_attribute_name(:description) %></th>
+      <th><%= Task.human_attribute_name(:deadline) %></th>
       <th></th>
     </tr>
   </thead>
@@ -15,6 +16,7 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.description %></td>
+        <td><%= task.deadline %></td>
         <td><%= link_to t("view.task.link_show"), task_path(task.id) %></td>
         <td><%= link_to t("view.task.link_edit"), edit_task_path(task.id) %></td>
         <td><%= link_to t("view.task.link_destroy"), task_path(task.id), method: :delete, data: { confirm: "「#{task.name}」#{t("view.task.destroy_confirm")}" } %></td>
