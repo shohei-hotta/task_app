@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    name { "タスク名" }
+    name { "最初のタスク" }
     description { "タスクの説明" }
   end
 end
