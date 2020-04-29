@@ -20,6 +20,7 @@
       <th><%= Task.human_attribute_name(:description) %></th>
       <th><%= Task.human_attribute_name(:deadline) %></th>
       <th><%= Task.human_attribute_name(:status) %></th>
+      <th><%= Task.human_attribute_name(:priority) %></th>
       <th></th>
     </tr>
   </thead>
@@ -30,6 +31,7 @@
         <td><%= task.description %></td>
         <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
         <td><%= task.status %></td>
+        <td><%= task.priority %></td>
         <td><%= link_to t("view.task.link_show"), task_path(task.id) %></td>
         <td><%= link_to t("view.task.link_edit"), edit_task_path(task.id) %></td>
         <td><%= link_to t("view.task.link_destroy"), task_path(task.id), method: :delete, data: { confirm: "「#{task.name}」#{t("view.task.destroy_confirm")}" } %></td>
