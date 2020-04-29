@@ -6,6 +6,9 @@
   <div class="form-group">
     <%= f.text_field :search %>
   </div>
+    <div class="form-group">
+      <%= f.select :search, { 未着手: "未着手", 着手中: "着手中", 完了: "完了" } %>
+    </div>
   <%= f.submit t("view.task.button_search") %>
 <% end %>
 
