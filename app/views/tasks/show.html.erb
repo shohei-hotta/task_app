@@ -19,6 +19,10 @@
       <td><%= @task.deadline.strftime("%Y年%m月%d日") %></td>
     </tr>
     <tr>
+      <th><%= Task.human_attribute_name(:status) %></th>
+      <td><%= @task.status %></td>
+    </tr>
+    <tr>
       <th><%= Task.human_attribute_name(:created_at) %></th>
       <td><%= @task.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
     </tr>
