@@ -5,9 +5,9 @@ class TasksController < ApplicationController
     if params[:sort_expired]
       @tasks = Task.sort_deadline
     elsif params[:search]
-      if params[:search][:name] && params[:search][:status].present?
+      if params[:search][:name].present? && params[:search][:status].present?
         @tasks = Task.search_name(params[:search][:name]).search_status(params[:search][:status])
-      elsif params[:search][:name]
+      elsif params[:search][:name].present?
         @tasks = Task.search_name(params[:search][:name])
       elsif params[:search][:status].present?
         @tasks = Task.search_status(params[:search][:status])
