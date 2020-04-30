@@ -29,14 +29,14 @@ describe "タスク管理機能", type: :system do
       end
 
       it "ソートボタンを押すと終了期限の昇順で表示される", :retry =>4 do
-        click_link "終了期限でソートする", href: tasks_path(sort_expired: "true")
+        click_link "▲", href: tasks_path(sort_expired_up: "true")
         task_list = all("tbody tr")
         expect(task_list[0]).to have_content "最初のタスク"
         expect(task_list[1]).to have_content "次のタスク"
       end
 
       it "ソートボタンを押すと優先順位の降順で表示される", :retry =>4 do
-        click_link "優先順位でソートする", href: tasks_path(sort_priority: "true")
+        click_link "▼", href: tasks_path(sort_priority_down: "true")
         task_list = all("tbody tr")
         expect(task_list[0]).to have_content "最初のタスク"
         expect(task_list[1]).to have_content "次のタスク"

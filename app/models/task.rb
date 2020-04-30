@@ -11,6 +11,8 @@ class Task < ApplicationRecord
   scope :search_name, ->(params) { where("name LIKE ?", "%#{params}%") }
   scope :search_status, ->(params) { where(status: params) }
   scope :recent, -> { order(created_at: :DESC) }
-  scope :sort_deadline, -> { order(:deadline) }
-  scope :sort_priority, -> { order(priority: :DESC) }
+  scope :sort_deadline_up, -> { order(:deadline) }
+  scope :sort_deadline_down, -> { order(deadline: :DESC) }
+  scope :sort_priority_up, -> { order(:priority) }
+  scope :sort_priority_down, -> { order(priority: :DESC) }
 end

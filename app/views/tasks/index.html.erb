@@ -14,10 +14,6 @@
 <% end %>
 <br>
 <br>
-<%= link_to t("view.task.sort_deadline"), tasks_path(sort_expired: "true") %>
-
-<%= link_to t("view.task.sort_priority"), tasks_path(sort_priority: "true") %>
-
 <div>
   <%= paginate @tasks %>
   <%= page_entries_info @tasks %>
@@ -27,9 +23,17 @@
   <thead class="thead-light">
     <tr>
       <th><%= Task.human_attribute_name(:name) %></th>
-      <th><%= Task.human_attribute_name(:deadline) %></th>
+      <th>
+        <%= Task.human_attribute_name(:deadline) %>
+        <%= link_to "▲", tasks_path(sort_expired_up: "true") %>
+        <%= link_to "▼", tasks_path(sort_expired_down: "true") %>
+      </th>
       <th><%= Task.human_attribute_name(:status) %></th>
-      <th><%= Task.human_attribute_name(:priority) %></th>
+      <th>
+        <%= Task.human_attribute_name(:priority) %>
+        <%= link_to "▲", tasks_path(sort_priority_up: "true") %>
+        <%= link_to "▼", tasks_path(sort_priority_down: "true") %>
+      </th>
       <th></th>
     </tr>
   </thead>

@@ -2,10 +2,14 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:sort_expired]
-      @tasks = Task.select_index.sort_deadline.page(params[:page])
-    elsif params[:sort_priority]
-      @tasks = Task.select_index.sort_priority.page(params[:page])
+    if params[:sort_expired_up]
+      @tasks = Task.select_index.sort_deadline_up.page(params[:page])
+    elsif params[:sort_expired_down]
+      @tasks = Task.select_index.sort_deadline_down.page(params[:page])
+    elsif params[:sort_priority_up]
+      @tasks = Task.select_index.sort_priority_up.page(params[:page])
+    elsif params[:sort_priority_down]
+      @tasks = Task.select_index.sort_priority_down.page(params[:page])
     elsif params[:search].nil?
       @tasks = Task.select_index.recent.page(params[:page])
     else
