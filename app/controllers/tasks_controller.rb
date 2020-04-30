@@ -4,6 +4,8 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired]
       @tasks = Task.select_index.sort_deadline
+    elsif params[:sort_priority]
+      @tasks = Task.select_index.sort_priority
     elsif params[:search]
       if params[:search][:name].present? && params[:search][:status].present?
         @tasks = Task.select_index.search_name(params[:search][:name]).search_status(params[:search][:status])

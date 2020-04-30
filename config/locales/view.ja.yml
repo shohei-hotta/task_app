@@ -13,6 +13,7 @@ ja:
       destroy_confirm: を削除してよろしいですか？
       button_search: 検索
       sort_deadline: 終了期限でソートする
+      sort_priority: 優先順位でソートする
     flash:
       create_message: を登録しました。
       edit_message: を編集しました。

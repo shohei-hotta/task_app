@@ -9,4 +9,5 @@ class Task < ApplicationRecord
   scope :search_status, ->(params) { where(status: params) }
   scope :recent, -> { order(created_at: :DESC) }
   scope :sort_deadline, -> { order(:deadline) }
+  scope :sort_priority, -> { order(priority: :DESC) }
 end

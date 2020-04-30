@@ -13,6 +13,9 @@
 <% end %>
 
 <%= link_to t("view.task.sort_deadline"), tasks_path(sort_expired: "true") %>
+
+<%= link_to t("view.task.sort_priority"), tasks_path(sort_priority: "true") %>
+
 <table>
   <thead>
     <tr>
