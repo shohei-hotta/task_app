@@ -1,17 +1,19 @@
 <h1><%= t("view.task.headline_index") %></h1>
 
-<%= link_to t("view.task.link_new"), new_task_path %>
-
+<%= link_to t("view.task.link_new"), new_task_path, class: "btn btn-primary" %>
+<br>
+<br>
 <%= form_with scope: :search, url: tasks_path, method: :get, local: true do |f| %>
   <div class="form-group">
-    <%= f.text_field :name, placeholder: "名称を入力してください" %>
+    <%= f.text_field :name, placeholder: "名称を入力してください", class: "form-control" %>
   </div>
     <div class="form-group">
-      <%= f.select :status, { 未着手: "未着手", 着手中: "着手中", 完了: "完了" }, { include_blank: true }, { id: "search_form_status" } %>
+      <%= f.select :status, { 未着手: "未着手", 着手中: "着手中", 完了: "完了" }, { include_blank: true }, { id: "search_form_status", class: "form-control" } %>
     </div>
-  <%= f.submit t("view.task.button_search") %>
+  <%= f.submit t("view.task.button_search"), class: "btn btn-primary" %>
 <% end %>
-
+<br>
+<br>
 <%= link_to t("view.task.sort_deadline"), tasks_path(sort_expired: "true") %>
 
 <%= link_to t("view.task.sort_priority"), tasks_path(sort_priority: "true") %>
@@ -21,8 +23,8 @@
   <%= page_entries_info @tasks %>
 </div>
 
-<table>
-  <thead>
+<table class="table table-hover">
+  <thead class="thead-light">
     <tr>
       <th><%= Task.human_attribute_name(:name) %></th>
       <th><%= Task.human_attribute_name(:description) %></th>
@@ -35,14 +37,15 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td><%= link_to task.name, task_path(task.id) %></td>
         <td><%= task.description %></td>
         <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
-        <td><%= link_to t("view.task.link_show"), task_path(task.id) %></td>
-        <td><%= link_to t("view.task.link_edit"), edit_task_path(task.id) %></td>
-        <td><%= link_to t("view.task.link_destroy"), task_path(task.id), method: :delete, data: { confirm: "「#{task.name}」#{t("view.task.destroy_confirm")}" } %></td>
+        <td>
+          <%= link_to t("view.task.link_edit"), edit_task_path(task.id), class: "btn btn-primary mr-2" %>
+          <%= link_to t("view.task.link_destroy"), task_path(task.id), method: :delete, data: { confirm: "「#{task.name}」#{t("view.task.destroy_confirm")}" }, class: "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

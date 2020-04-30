@@ -1,5 +1,7 @@
 <h1><%= t("view.task.headline_edit") %></h1>
 
-<%= render partial: "form", locals: { task: @task } %>
+<div class="nav justify-content-end">
+  <%= link_to t("view.task.link_index"), tasks_path, class: "nav-link" %>
+</div>
 
-<%= link_to t("view.task.link_index"), tasks_path %>
+<%= render partial: "form", locals: { task: @task } %>

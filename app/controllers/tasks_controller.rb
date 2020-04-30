@@ -29,9 +29,9 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      redirect_to task_url(@task.id), notice: "「#{@task.name}」#{t("view.flash.create_message")}"
+      redirect_to task_url(@task.id), success: "「#{@task.name}」#{t("view.flash.create_message")}"
     else
-      flash.now[:alert] = "#{t("view.flash.create_alert")}"
+      flash.now[:danger] = "#{t("view.flash.create_alert")}"
       render :new
     end
   end
@@ -41,16 +41,16 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_url, notice: "「#{@task.name}」#{t("view.flash.edit_message")}"
+      redirect_to tasks_url, success: "「#{@task.name}」#{t("view.flash.edit_message")}"
     else
-      flash.now[:alert] = "#{t("view.flash.edit_alert")}"
+      flash.now[:danger] = "#{t("view.flash.edit_alert")}"
       render :edit
     end
   end
 
   def destroy
     @task.destroy
-    redirect_to tasks_path, notice: "「#{@task.name}」#{t("view.flash.destroy_message")}"
+    redirect_to tasks_path, success: "「#{@task.name}」#{t("view.flash.destroy_message")}"
   end
 
   private
