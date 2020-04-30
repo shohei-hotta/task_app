@@ -27,7 +27,6 @@
   <thead class="thead-light">
     <tr>
       <th><%= Task.human_attribute_name(:name) %></th>
-      <th><%= Task.human_attribute_name(:description) %></th>
       <th><%= Task.human_attribute_name(:deadline) %></th>
       <th><%= Task.human_attribute_name(:status) %></th>
       <th><%= Task.human_attribute_name(:priority) %></th>
@@ -38,7 +37,6 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= link_to task.name, task_path(task.id) %></td>
-        <td><%= task.description %></td>
         <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>

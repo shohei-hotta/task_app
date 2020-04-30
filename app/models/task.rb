@@ -4,7 +4,7 @@ class Task < ApplicationRecord
 
   enum priority: { 低: 0, 中: 1, 高: 2 }
 
-  scope :select_index, -> { select(:id, :name, :description, :deadline, :status, :priority, :created_at) }
+  scope :select_index, -> { select(:id, :name, :deadline, :status, :priority, :created_at) }
   scope :search_name, ->(params) { where("name LIKE ?", "%#{params}%") }
   scope :search_status, ->(params) { where(status: params) }
   scope :recent, -> { order(created_at: :DESC) }
