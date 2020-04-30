@@ -26,8 +26,26 @@ RSpec.describe "タスク管理機能", type: :model do
       expect(task.errors[:description]).to include("は200文字以内で入力してください")
     end
 
-    it "名称と詳しい説明が規定の文字数で入力されていれば有効" do
-      task = Task.new(name: "テストタスク", description: "テストタスクの説明")
+    it "終了期限が入力されていなければ無効" do
+      task = Task.new(deadline: nil)
+      task.valid?
+      expect(task.errors[:deadline]).to include("を入力してください")
+    end
+
+    it "進捗が入力されていなければ無効" do
+      task = Task.new(status: nil)
+      task.valid?
+      expect(task.errors[:status]).to include("を入力してください")
+    end
+
+    it "優先順位が入力されていなければ無効" do
+      task = Task.new(priority: nil)
+      task.valid?
+      expect(task.errors[:priority]).to include("を入力してください")
+    end
+
+    it "全てのカラムが規定の文字数で入力されていれば有効" do
+      task = Task.new(name: "テストタスク", description: "テストタスクの説明", deadline: "2020-01-01", status: "完了", priority: "高")
       expect(task).to be_valid
     end
   end
