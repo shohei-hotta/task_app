@@ -90,7 +90,7 @@ describe "タスク管理機能", type: :system do
     context "任意のタスクの詳細リンクを押したとき" do
       before do
         visit tasks_path
-        click_link "詳細", href: task_path(@task)
+        click_link "最初のタスク", href: task_path(@task)
       end
 
       it "該当タスクの詳細画面に遷移する" do

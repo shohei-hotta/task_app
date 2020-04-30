@@ -6,7 +6,9 @@ class TasksController < ApplicationController
       @tasks = Task.select_index.sort_deadline.page(params[:page])
     elsif params[:sort_priority]
       @tasks = Task.select_index.sort_priority.page(params[:page])
-    elsif params[:search][:name].present? || params[:search][:status].present?
+    elsif params[:search].nil?
+      @tasks = Task.select_index.recent.page(params[:page])
+    else
       if params[:search][:name].present? && params[:search][:status].present?
         @tasks = Task.select_index.search_name(params[:search][:name]).search_status(params[:search][:status]).page(params[:page])
       elsif params[:search][:name].present?
@@ -14,9 +16,10 @@ class TasksController < ApplicationController
       elsif params[:search][:status].present?
         @tasks = Task.select_index.search_status(params[:search][:status]).page(params[:page])
       end
-    else
-      @tasks = Task.select_index.recent.page(params[:page])
     end
+    #else
+    #  @tasks = Task.select_index.recent.page(params[:page])
+    #end
   end
 
   def show
