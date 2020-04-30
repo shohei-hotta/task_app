@@ -12,6 +12,8 @@ class TasksController < ApplicationController
       @tasks = Task.select_index.sort_priority_down.page(params[:page])
     elsif params[:search].nil?
       @tasks = Task.select_index.recent.page(params[:page])
+    elsif params[:search][:name].blank? && params[:search][:status].blank?
+      @tasks = Task.select_index.recent.page(params[:page])
     else
       if params[:search][:name].present? && params[:search][:status].present?
         @tasks = Task.select_index.search_name(params[:search][:name]).search_status(params[:search][:status]).page(params[:page])
@@ -21,9 +23,6 @@ class TasksController < ApplicationController
         @tasks = Task.select_index.search_status(params[:search][:status]).page(params[:page])
       end
     end
-    #else
-    #  @tasks = Task.select_index.recent.page(params[:page])
-    #end
   end
 
   def show
