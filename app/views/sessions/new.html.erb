@@ -1,12 +1,16 @@
 <h1><%= t("view.session.headline_new") %></h1>
 
+<div class="nav justify-content-end">
+  <%= link_to "#{t("view.session.link_user_new")}", new_user_path, class: "nav-link" %>
+</div>
+
 <%= form_with scope: :session, url: sessions_path, local: true do |f| %>
   <div class="form-group">
-    <%= f.label :email %>
+    <%= f.label :email, "#{t("view.session.label_email")}" %>
     <%= f.email_field :email, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.label :password %>
+    <%= f.label :password, "#{t("view.session.label_password")}" %>
     <%= f.password_field :password, class: "form-control" %>
   </div>
   <%= f.submit t("view.session.button_login"), class: "btn btn-primary" %>

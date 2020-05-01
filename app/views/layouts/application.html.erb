@@ -14,9 +14,9 @@
       <div class="navbar-brand">TaskApp</div>
       <ul class="navbar-nav ml-auto">
         <% if logged_in? %>
-          <li class="nav-item"><%= link_to "タスク一覧", tasks_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ユーザー詳細", user_path(current_user.id), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "#{t("view.task.headline_index")}", tasks_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "#{t("view.user.headline_show")}", user_path(current_user.id), class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "#{t("view.session.button_logout")}", session_path(current_user.id), method: :delete, class: "nav-link" %></li>
         <% end %>
       </ul>
     </div>
