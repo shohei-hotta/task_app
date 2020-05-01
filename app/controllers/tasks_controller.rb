@@ -2,27 +2,29 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
+    index_tasks = Task.select_index 
     if params[:sort_expired_up]
-      @tasks = Task.select_index.sort_deadline_up.page(params[:page])
+      tasks = index_tasks.sort_deadline_up
     elsif params[:sort_expired_down]
-      @tasks = Task.select_index.sort_deadline_down.page(params[:page])
+      tasks = index_tasks.sort_deadline_down
     elsif params[:sort_priority_up]
-      @tasks = Task.select_index.sort_priority_up.page(params[:page])
+      tasks = index_tasks.sort_priority_up
     elsif params[:sort_priority_down]
-      @tasks = Task.select_index.sort_priority_down.page(params[:page])
+      tasks = index_tasks.sort_priority_down
     elsif params[:search].nil?
-      @tasks = Task.select_index.recent.page(params[:page])
+      tasks = index_tasks.recent
     elsif params[:search][:name].blank? && params[:search][:status].blank?
-      @tasks = Task.select_index.recent.page(params[:page])
+      tasks = index_tasks.recent
     else
       if params[:search][:name].present? && params[:search][:status].present?
-        @tasks = Task.select_index.search_name(params[:search][:name]).search_status(params[:search][:status]).page(params[:page])
+        tasks = index_tasks.search_name(params[:search][:name]).search_status(params[:search][:status])
       elsif params[:search][:name].present?
-        @tasks = Task.select_index.search_name(params[:search][:name]).page(params[:page])
+        tasks = index_tasks.search_name(params[:search][:name])
       elsif params[:search][:status].present?
-        @tasks = Task.select_index.search_status(params[:search][:status]).page(params[:page])
+        tasks = index_tasks.search_status(params[:search][:status])
       end
     end
+    @tasks = tasks.page(params[:page])
   end
 
   def show
@@ -33,7 +35,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to task_url(@task.id), success: "「#{@task.name}」#{t("view.flash.create_message")}"
     else
