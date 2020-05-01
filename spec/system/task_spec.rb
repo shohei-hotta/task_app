@@ -2,24 +2,22 @@ require "rails_helper"
 
 describe "タスク管理機能", type: :system do
   before do
-    @task = FactoryBot.create(:task)
+    @user_a = FactoryBot.create(:user, name: "ユーザーA", email: "a@example.com")
+    @task = FactoryBot.create(:task, user: @user_a)
+    FactoryBot.create(:task, name: "次のタスク", deadline: "2020-04-30", status: "完了", priority: "低", user: @user_a)
   end
 
   describe "タスク一覧表示機能" do
-    context "タスクを作成したとき" do
+    context "ユーザーAがログインしているとき" do
       before do
-        visit tasks_path
+        visit new_session_path
+        fill_in "メールアドレス", with: "a@example.com"
+        fill_in "パスワード", with: "password"
+        click_button "ログイン"
       end
 
       it "作成したタスクが表示される" do
         expect(page).to have_content "最初のタスク"
-      end
-    end
-
-    context "複数のタスクを作成したとき" do
-      before do
-        FactoryBot.create(:task, name: "次のタスク", deadline: "2020-04-30", status: "完了", priority: "低")
-        visit tasks_path
       end
 
       it "タスクが作成日時の降順で表示される" do
@@ -65,18 +63,22 @@ describe "タスク管理機能", type: :system do
   end
 
   describe "タスク登録機能" do
-    context "必要項目を入力して、createボタンを押したとき" do
+    context "ユーザーAがログインしているとき" do
       before do
-        visit new_task_path
+        visit new_session_path
+        fill_in "メールアドレス", with: "a@example.com"
+        fill_in "パスワード", with: "password"
+        click_button "ログイン"
+      end
+
+      it "タスクが保存される" do
+        click_link "新規登録"
         fill_in "名称", with: "新規タスク"
         fill_in "詳しい説明", with: "新規タスクの説明"
         fill_in "終了期限", with: "04/28/2020"
         select "着手中", from: "進捗"
         select "高", from: "優先順位"
         click_button "登録する"
-      end
-
-      it "タスクが保存される" do
         expect(page).to have_content "新規タスク"
         expect(page).to have_content "新規タスクの説明"
         expect(page).to have_content "2020年04月28日"
@@ -87,13 +89,16 @@ describe "タスク管理機能", type: :system do
   end
 
   describe "タスク詳細表示機能" do
-    context "任意のタスクの詳細リンクを押したとき" do
+    context "ユーザーAがログインしているとき" do
       before do
-        visit tasks_path
-        click_link "最初のタスク", href: task_path(@task)
+        visit new_session_path
+        fill_in "メールアドレス", with: "a@example.com"
+        fill_in "パスワード", with: "password"
+        click_button "ログイン"
       end
 
       it "該当タスクの詳細画面に遷移する" do
+        click_link "最初のタスク", href: task_path(@task)
         expect(page).to have_content "最初のタスク"
       end
     end
