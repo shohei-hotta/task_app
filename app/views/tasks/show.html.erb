@@ -1,6 +1,10 @@
 <h1><%= t("view.task.headline_show") %></h1>
 
-<table>
+<div class="nav justify-content-end">
+  <%= link_to t("view.task.link_index"), tasks_path, class: "nav-link" %>
+</div>
+
+<table class="table table-hover">
   <tbody>
     <tr>
       <th><%= Task.human_attribute_name(:id) %></th>
@@ -15,16 +19,27 @@
       <td><%= @task.description %></td>
     </tr>
     <tr>
+      <th><%= Task.human_attribute_name(:deadline) %></th>
+      <td><%= @task.deadline.strftime("%Y年%m月%d日") %></td>
+    </tr>
+    <tr>
+      <th><%= Task.human_attribute_name(:status) %></th>
+      <td><%= @task.status %></td>
+    </tr>
+    <tr>
+      <th><%= Task.human_attribute_name(:priority) %></th>
+      <td><%= @task.priority %></td>
+    </tr>
+    <tr>
       <th><%= Task.human_attribute_name(:created_at) %></th>
-      <td><%= @task.created_at %></td>
+      <td><%= @task.created_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
     </tr>
     <tr>
       <th><%= Task.human_attribute_name(:updated_at) %></th>
-      <td><%= @task.updated_at %></td>
+      <td><%= @task.updated_at.strftime("%Y年%m月%d日 %H:%M:%S") %></td>
     </tr>
   </tbody>
 </table>
 
-<%= link_to t("view.task.link_index"), tasks_path %>
-<%= link_to t("view.task.link_edit"), edit_task_path %>
-<%= link_to t("view.task.link_destroy"), task_path, method: :delete, data: { confirm: "「#{@task.name}」#{t("view.task.destroy_confirm")}" } %>
+<%= link_to t("view.task.link_edit"), edit_task_path, class: "btn btn-primary" %>
+<%= link_to t("view.task.link_destroy"), task_path, method: :delete, data: { confirm: "「#{@task.name}」#{t("view.task.destroy_confirm")}" }, class: "btn btn-danger" %>
