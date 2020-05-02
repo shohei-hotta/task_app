@@ -17,6 +17,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
+    @users = User.select(:id, :name, :email, :created_at)
   end
 
   private
