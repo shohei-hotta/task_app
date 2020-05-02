@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :login_required
 
   def index
     index_tasks = Task.select_index 
@@ -69,5 +70,9 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def login_required
+    redirect_to new_session_url unless logged_in?
   end
 end
