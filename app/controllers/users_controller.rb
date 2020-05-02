@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to tasks_url, success: "「#{@user.name}」#{t("view.flash.create_message")}"
     else
-      flash:now[:danger] = "#{t("view.flash.create_alert")}"
+      flash.now[:danger] = "#{t("view.flash.create_alert")}"
       render :new
     end
   end
