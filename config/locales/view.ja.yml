@@ -17,6 +17,8 @@ ja:
     user:
       headline_new: ユーザー登録
       headline_show: ユーザー詳細
+      headline_index: ユーザー一覧
+      headline_edit: ユーザ一編集
     session:
       headline_new: ログイン
       button_login: ログイン
