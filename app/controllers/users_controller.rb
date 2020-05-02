@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logout_required, only: [:new, :create]
   before_action :login_required, only: [:show]
   before_action :not_your_profile, only: [:show]
 
@@ -25,6 +26,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_digest)
+  end
+
+  def logout_required
+    redirect_to tasks_url if logged_in?
   end
 
   def login_required
