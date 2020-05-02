@@ -73,6 +73,6 @@ class TasksController < ApplicationController
   end
 
   def login_required
-    redirect_to new_session_url unless logged_in?
+    redirect_to new_session_url, danger: "#{t("view.flash.require_login_alert")}" unless logged_in?
   end
 end

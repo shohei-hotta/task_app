@@ -33,3 +33,6 @@ ja:
       login_message: ログインしました。
       logout_message: ログアウトしました。
       login_alert: ログインできませんでした。
+      require_login_alert: ログインしてください。
+      require_logout_alert: ログアウトしてください。
+      not_your_profile_alert: あなたのプロフィールではありません。

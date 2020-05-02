@@ -29,14 +29,14 @@ class UsersController < ApplicationController
   end
 
   def logout_required
-    redirect_to tasks_url if logged_in?
+    redirect_to tasks_url, danger: "#{t("view.flash.require_logout_alert")}" if logged_in?
   end
 
   def login_required
-    redirect_to new_session_url unless logged_in?
+    redirect_to new_session_url, danger: "#{t("view.flash.require_login_alert")}" unless logged_in?
   end
 
   def not_your_profile
-    redirect_to tasks_url unless params[:id] == current_user.id.to_s
+    redirect_to tasks_url, danger: "#{t("view.flash.not_your_profile_alert")}" unless params[:id] == current_user.id.to_s
   end
 end
