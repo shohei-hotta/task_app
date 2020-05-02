@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -25,6 +25,11 @@ class Admin::UsersController < ApplicationController
       flash.now[:danger] = "#{t("view.flash.edit_alert")}"
       render :edit
     end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to admin_users_url, success: "「#{@user.name}」#{t("view.flash.destroy_message")}"
   end
 
   def index
