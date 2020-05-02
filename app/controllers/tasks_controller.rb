@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   before_action :login_required
 
   def index
-    index_tasks = Task.select_index 
+    index_tasks = current_user.tasks.select_index 
     if params[:sort_expired_up]
       tasks = index_tasks.sort_deadline_up
     elsif params[:sort_expired_down]
@@ -69,7 +69,7 @@ class TasksController < ApplicationController
   end
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def login_required
