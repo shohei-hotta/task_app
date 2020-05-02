@@ -19,6 +19,7 @@ ja:
       headline_show: ユーザー詳細
       headline_index: ユーザー一覧
       headline_edit: ユーザ一編集
+      task_count: タスクの数
     session:
       headline_new: ログイン
       button_login: ログイン
