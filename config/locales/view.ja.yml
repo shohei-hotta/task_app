@@ -21,6 +21,7 @@ ja:
       headline_edit: ユーザ一編集
       task_count: タスクの数
       task_index: が登録しているタスク
+      link_admin: 管理画面
     session:
       headline_new: ログイン
       button_login: ログイン
@@ -40,3 +41,4 @@ ja:
       require_login_alert: ログインしてください。
       require_logout_alert: ログアウトしてください。
       not_your_profile_alert: あなたのプロフィールではありません。
+      require_admin_alert: 管理者権限がありません。

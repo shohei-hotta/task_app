@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy, :show]
+  before_action :login_required
+  before_action :admin_required
 
   def new
     @user = User.new
@@ -47,5 +49,13 @@ class Admin::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def login_required
+    redirect_to new_session_url, danger: "#{t("view.flash.require_login_alert")}" unless logged_in?
+  end
+
+  def admin_required
+    redirect_to tasks_url, danger: "#{t("view.flash.require_admin_alert")}" unless current_user.admin
   end
 end
