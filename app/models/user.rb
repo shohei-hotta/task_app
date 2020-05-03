@@ -10,4 +10,16 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true
 
   before_validation { email.downcase! }
+  before_update :not_update_last_admin
+  before_destroy :not_destroy_last_admin
+
+  private
+
+  def not_update_last_admin
+    throw(:abort) if User.where(admin: true).count == 1
+  end
+
+  def not_destroy_last_admin
+    throw(:abort) if User.where(admin: true).count == 1
+  end
 end
