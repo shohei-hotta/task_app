@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :show]
 
   def new
     @user = User.new
@@ -34,6 +34,9 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.select(:id, :name, :email, :created_at).includes(:tasks)
+  end
+
+  def show
   end
 
   private
