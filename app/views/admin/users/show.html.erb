@@ -23,6 +23,10 @@
       <td><%= @user.tasks.count %></td>
     </tr>
     <tr>
+      <th><%= User.human_attribute_name(:admin) %></th>
+      <td><%= @user.admin? ? "#{t("view.user.admin_user")}" : "#{t("view.user.general_user")}" %></td>
+    </tr>
+    <tr>
       <th><%= User.human_attribute_name(:created_at) %></th>
       <td><%= @user.created_at.strftime("%Y年%m月%d日") %></td>
     </tr>

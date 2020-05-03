@@ -8,8 +8,9 @@
       <th><%= User.human_attribute_name(:id) %></th>
       <th><%= User.human_attribute_name(:name) %></th>
       <th><%= User.human_attribute_name(:email) %></th>
-      <th><%= User.human_attribute_name(:created_at) %></th>
       <th><%= t("view.user.task_count") %></th>
+      <th><%= User.human_attribute_name(:admin) %></th>
+      <th><%= User.human_attribute_name(:created_at) %></th>
       <th></th>
     </tr>
   </thead>
@@ -19,8 +20,9 @@
         <td><%= user.id %></td>
         <td><%= link_to user.name, admin_user_path(user.id) %></td>
         <td><%= user.email %></td>
-        <td><%= user.created_at.strftime("%Y年%m月%d日") %></td>
         <td><%= user.tasks.count %></td>
+        <td><%= user.admin? ? "#{t("view.user.admin_user")}" : "#{t("view.user.general_user")}" %></td>
+        <td><%= user.created_at.strftime("%Y年%m月%d日") %></td>
         <td>
           <%= link_to t("view.task.link_edit"), edit_admin_user_path(user.id), class: "btn btn-primary mr-2" %>
           <%= link_to t("view.task.link_destroy"), admin_user_path(user.id), method: :delete, data: { confirm: "「#{user.name}」#{t("view.task.destroy_confirm")}" }, class: "btn btn-danger" %>

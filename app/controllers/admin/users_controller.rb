@@ -35,7 +35,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = User.select(:id, :name, :email, :created_at).includes(:tasks)
+    @users = User.select(:id, :name, :email, :created_at, :admin).includes(:tasks)
   end
 
   def show
