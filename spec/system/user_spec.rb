@@ -93,14 +93,22 @@ describe "ユーザ一機能", type: :system do
         expect(page).to have_content "ユーザーAが登録しているタスク"
       end
 
-      #it "管理画面からユーザーを編集できる" do
-      #  click_link "編集", href: edit_admin_user_path(@user_a)
-      #  fill_in "パスワード", with: "password"
-      #  fill_in "パスワード（確認用）", with: "password"
-      #  check "管理者権限"
-      #  click_button "更新する"
-      #  expect(page).to have_selector ".alert-danger", text: "「ユーザーAを編集しました。」"
-      #end
+      it "管理画面からユーザーを編集できる" do
+        click_link "編集", href: edit_admin_user_path(@user_a)
+        fill_in "パスワード", with: "password"
+        fill_in "パスワード（確認用）", with: "password"
+        check "管理者権限"
+        click_button "更新する"
+        user_list = all("tbody tr")
+        expect(user_list[1]).to have_content "あり"
+      end
+
+      it "管理画面からユーザーを削除できる" do
+        page.accept_confirm do
+          click_link "削除", href: admin_user_path(@user_a)
+        end
+        expect(page).to have_selector ".alert-success", text: "「ユーザーA」を削除しました。"
+      end
     end
 
     context "一般ユーザーでログインしているとき" do
