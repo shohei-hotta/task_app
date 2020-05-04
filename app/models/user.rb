@@ -16,10 +16,10 @@ class User < ApplicationRecord
   private
 
   def not_update_last_admin
-    throw(:abort) if User.where(admin: true).count == 1
+    throw(:abort) if User.where(admin: true).count == 1 && self.admin == false && self.id == User.find_by(admin: true).id
   end
 
   def not_destroy_last_admin
-    throw(:abort) if User.where(admin: true).count == 1
+    throw(:abort) if User.where(admin: true).count == 1 && self.admin == true
   end
 end

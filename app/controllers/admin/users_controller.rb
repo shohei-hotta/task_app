@@ -30,8 +30,9 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_url, success: "「#{@user.name}」#{t("view.flash.destroy_message")}"
+    if @user.destroy
+      redirect_to admin_users_url, success: "「#{@user.name}」#{t("view.flash.destroy_message")}"
+    end
   end
 
   def index
