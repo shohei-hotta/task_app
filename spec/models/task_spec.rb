@@ -45,15 +45,17 @@ RSpec.describe "タスク管理機能", type: :model do
     end
 
     it "全てのカラムが規定の文字数で入力されていれば有効" do
-      task = Task.new(name: "テストタスク", description: "テストタスクの説明", deadline: "2020-01-01", status: "完了", priority: "高")
+      user = create(:user)
+      task = Task.new(name: "テストタスク", description: "テストタスクの説明", deadline: "2020-01-01", status: "完了", priority: "高", user: user)
       expect(task).to be_valid
     end
   end
 
   context "scope" do
     before do
-      Task.create(name: "メインタスク", description: "説明", deadline: "2020-01-01", status: "未着手")
-      task = Task.create(name: "サブタスク", description: "説明", deadline: "2020-01-01", status: "完了")
+      user = create(:user)
+      create(:task, name: "メインタスク", status: "未着手", user: user)
+      create(:task, name: "サブタスク", status: "完了", user: user)
     end
 
     it "名称検索できる" do

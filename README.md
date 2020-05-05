@@ -15,16 +15,17 @@ FK：foreign_key
 |deadline   |datetime|
 |priority   |integer |
 |status     |string  |
+|user_id(FK)|integer |
 
 ### usersテーブル
 
 |column         |type   |
 |---------------|-------|
 |id             |integer|
-|task_id(FK)    |integer|
 |name           |string |
 |email          |string |
 |password_digest|string |
+|admin          |boolean|
 
 ### labellingsテーブル
 
