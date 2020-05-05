@@ -1,5 +1,6 @@
 class Admin::LabelsController < ApplicationController
   def index
+    @labels = Label.select(:id, :name, :created_at)
   end
 
   def new

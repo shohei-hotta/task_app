@@ -24,4 +24,6 @@ ja:
         updated_at: 更新日時
         admin: 管理者権限
       label:
+        id: ID
         name: ラベル名
+        created_at: 作成日時
