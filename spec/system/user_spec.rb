@@ -15,7 +15,7 @@ describe "ユーザ一機能", type: :system do
 
   describe "ログイン機能" do
     before do
-      @user_a = FactoryBot.create(:user)
+      @user_a = create(:user)
     end
 
     it "ログインできる" do
@@ -40,7 +40,7 @@ describe "ユーザ一機能", type: :system do
       end
 
       it "他のユーザーの詳細画面に遷移できない" do
-        @user_b = FactoryBot.create(:user, name: "ユーザーB", email: "b@example.com")
+        @user_b = create(:user, name: "ユーザーB", email: "b@example.com")
         visit user_path(@user_b)
         expect(current_path).to eq tasks_path
       end
@@ -62,8 +62,8 @@ describe "ユーザ一機能", type: :system do
   describe "ユーザー管理機能" do
     context "管理ユーザーでログインしているとき" do
       before do
-        FactoryBot.create(:user, name: "管理ユーザー", email: "admin@example.com", admin: true)
-        @user_a = FactoryBot.create(:user)
+        create(:user, name: "管理ユーザー", email: "admin@example.com", admin: true)
+        @user_a = create(:user)
         visit new_session_path
         fill_in "メールアドレス", with: "admin@example.com"
         fill_in "パスワード", with: "password"
@@ -113,7 +113,7 @@ describe "ユーザ一機能", type: :system do
 
     context "一般ユーザーでログインしているとき" do
       before do
-        FactoryBot.create(:user)
+        create(:user)
         visit new_session_path
         fill_in "メールアドレス", with: "a@example.com"
         fill_in "パスワード", with: "password"

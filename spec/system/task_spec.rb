@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe "タスク管理機能", type: :system do
   before do
-    @user_a = FactoryBot.create(:user, name: "ユーザーA", email: "a@example.com")
-    @task = FactoryBot.create(:task, user: @user_a)
-    FactoryBot.create(:task, name: "次のタスク", deadline: "2020-04-30", status: "完了", priority: "低", user: @user_a)
+    @user_a = create(:user, name: "ユーザーA", email: "a@example.com")
+    @task = create(:task, user: @user_a)
+    create(:task, name: "次のタスク", deadline: "2020-04-30", status: "完了", priority: "低", user: @user_a)
   end
 
   describe "タスク一覧表示機能" do

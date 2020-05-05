@@ -45,7 +45,7 @@ RSpec.describe "タスク管理機能", type: :model do
     end
 
     it "全てのカラムが規定の文字数で入力されていれば有効" do
-      user = FactoryBot.create(:user)
+      user = create(:user)
       task = Task.new(name: "テストタスク", description: "テストタスクの説明", deadline: "2020-01-01", status: "完了", priority: "高", user: user)
       expect(task).to be_valid
     end
@@ -53,9 +53,9 @@ RSpec.describe "タスク管理機能", type: :model do
 
   context "scope" do
     before do
-      user = FactoryBot.create(:user)
-      FactoryBot.create(:task, name: "メインタスク", status: "未着手", user: user)
-      FactoryBot.create(:task, name: "サブタスク", status: "完了", user: user)
+      user = create(:user)
+      create(:task, name: "メインタスク", status: "未着手", user: user)
+      create(:task, name: "サブタスク", status: "完了", user: user)
     end
 
     it "名称検索できる" do
