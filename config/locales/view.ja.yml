@@ -25,6 +25,8 @@ ja:
       admin_user: あり
       general_user: なし
     label:
+      headline_index: ラベル一覧
+      headline_new: ラベル登録
       link_admin: ラベル管理
     session:
       headline_new: ログイン
