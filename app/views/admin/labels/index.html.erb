@@ -19,6 +19,7 @@
         <td><%= label.created_at.strftime("%Y年%m月%d日") %></td>
         <td>
           <%= link_to t("view.task.link_edit"), edit_admin_label_path(label.id), class: "btn btn-primary mr-2" %>
+          <%= link_to t("view.task.link_destroy"), admin_label_path(label.id), method: :delete, data: { confirm: "「#{label.name}」#{t("view.task.destroy_confirm")}" }, class: "btn btn-danger" %>
         </td>
       </tr>
     <% end %>

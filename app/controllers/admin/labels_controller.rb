@@ -1,5 +1,5 @@
 class Admin::LabelsController < ApplicationController
-  before_action :set_label, only: [:edit, :update]
+  before_action :set_label, only: [:edit, :update, :destroy]
 
   def index
     @labels = Label.select(:id, :name, :created_at)
@@ -27,6 +27,12 @@ class Admin::LabelsController < ApplicationController
     else
       flash.now[:danger] = "#{t("view.flash.edit_alert")}"
       render :edit
+    end
+  end
+
+  def destroy
+    if @label.destroy
+      redirect_to admin_labels_url, success: "「#{@label.name}」#{t("view.flash.destroy_message")}"
     end
   end
 
