@@ -1,5 +1,7 @@
 class Admin::LabelsController < ApplicationController
   before_action :set_label, only: [:edit, :update, :destroy]
+  before_action :login_required
+  before_action :admin_required
 
   def index
     @labels = Label.select(:id, :name, :created_at)
@@ -44,5 +46,13 @@ class Admin::LabelsController < ApplicationController
 
   def set_label
     @label = Label.find(params[:id])
+  end
+
+  def login_required
+    redirect_to new_session_url, danger: "#{t("view.flash.require_login_alert")}" unless logged_in?
+  end
+
+  def admin_required
+    redirect_to tasks_url, danger: "#{t("view.flash.require_admin_alert")}" unless current_user.admin?
   end
 end
