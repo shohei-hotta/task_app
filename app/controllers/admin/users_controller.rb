@@ -57,6 +57,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def admin_required
-    redirect_to tasks_url, danger: "#{t("view.flash.require_admin_alert")}" unless current_user.admin
+    redirect_to tasks_url, danger: "#{t("view.flash.require_admin_alert")}" unless current_user.admin?
   end
 end
