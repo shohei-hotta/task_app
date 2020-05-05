@@ -1,4 +1,6 @@
 class Admin::LabelsController < ApplicationController
+  before_action :set_label, only: [:edit, :update]
+
   def index
     @labels = Label.select(:id, :name, :created_at)
   end
@@ -17,12 +19,24 @@ class Admin::LabelsController < ApplicationController
     end
   end
 
-  def edit
+  def edit; end
+
+  def update
+    if @label.update(label_params)
+      redirect_to admin_labels_url, success: "「#{@label.name}」#{t("view.flash.edit_message")}"
+    else
+      flash.now[:danger] = "#{t("view.flash.edit_alert")}"
+      render :edit
+    end
   end
 
   private
 
   def label_params
     params.require(:label).permit(:name)
+  end
+
+  def set_label
+    @label = Label.find(params[:id])
   end
 end

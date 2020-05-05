@@ -1,2 +1,23 @@
-<h1>Admin::Labels#edit</h1>
-<p>Find me in app/views/admin/labels/edit.html.erb</p>
+<h1><%= t("view.label.headline_edit") %></h1>
+
+<div class="nav justify-content-end">
+  <%= link_to t("view.task.link_index"), admin_labels_path, class: "nav-link" %>
+</div>
+
+<% if @label.errors.present? %>
+  <div class="alert alert-danger">
+    <ul id="error_explanation">
+      <% @label.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: [:admin, @label], local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <%= f.submit nil, class: "btn btn-primary" %>
+<% end %>

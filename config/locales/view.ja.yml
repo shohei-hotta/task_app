@@ -27,6 +27,7 @@ ja:
     label:
       headline_index: ラベル一覧
       headline_new: ラベル登録
+      headline_edit: ラベル編集
       link_admin: ラベル管理
     session:
       headline_new: ログイン
