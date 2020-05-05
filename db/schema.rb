@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_200137) do
+ActiveRecord::Schema.define(version: 2020_05_05_071614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "name", limit: 30, null: false
@@ -23,7 +29,20 @@ ActiveRecord::Schema.define(version: 2020_04_29_200137) do
     t.datetime "deadline", default: "9998-12-31 23:59:59", null: false
     t.string "status", default: "未着手", null: false
     t.integer "priority", default: 0, null: false
+    t.bigint "user_id"
     t.index ["name"], name: "index_tasks_on_name"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "tasks", "users"
 end

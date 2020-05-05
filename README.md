@@ -26,7 +26,7 @@ FK：foreign_key
 |email          |string |
 |password_digest|string |
 
-### groupsテーブル
+### labellingsテーブル
 
 |column      |type   |
 |------------|-------|
