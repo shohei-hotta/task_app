@@ -2,7 +2,7 @@ ja:
   view:
     task:
       headline_edit: タスクの編集
-      headline_index: タスクの一覧
+      headline_index: タスク一覧
       headline_new: タスクの新規登録
       headline_show: タスクの詳細
       link_index: 一覧
@@ -14,9 +14,33 @@ ja:
       button_search: 検索
       sort_deadline: 終了期限でソートする
       sort_priority: 優先順位でソートする
+    user:
+      headline_new: ユーザー登録
+      headline_show: ユーザー詳細
+      headline_index: ユーザー一覧
+      headline_edit: ユーザ一編集
+      task_count: タスクの数
+      task_index: が登録しているタスク
+      link_admin: 管理画面
+      admin_user: あり
+      general_user: なし
+    session:
+      headline_new: ログイン
+      button_login: ログイン
+      button_logout: ログアウト
+      label_email: メールアドレス
+      label_password: パスワード
+      link_user_new: ユーザー登録
     flash:
       create_message: を登録しました。
       edit_message: を編集しました。
       destroy_message: を削除しました。
       create_alert: 登録できませんでした。
       edit_alert: 編集できませんでした。
+      login_message: ログインしました。
+      logout_message: ログアウトしました。
+      login_alert: ログインできませんでした。
+      require_login_alert: ログインしてください。
+      require_logout_alert: ログアウトしてください。
+      not_your_profile_alert: あなたのプロフィールではありません。
+      require_admin_alert: 管理者権限がありません。
