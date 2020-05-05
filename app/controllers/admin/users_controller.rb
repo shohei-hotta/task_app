@@ -17,8 +17,7 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -39,8 +38,7 @@ class Admin::UsersController < ApplicationController
     @users = User.select(:id, :name, :email, :created_at, :admin).includes(:tasks)
   end
 
-  def show
-  end
+  def show; end
 
   private
 
