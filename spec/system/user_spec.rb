@@ -120,7 +120,7 @@ describe "ユーザ一機能", type: :system do
         click_button "ログイン"
       end
 
-      it "管理者権限を持たないユーザーは管理画面に遷移できない" do
+      it "管理者権限を持たないユーザーはユーザー管理画面に遷移できない" do
         visit admin_users_path
         expect(current_path).to eq tasks_path
       end
