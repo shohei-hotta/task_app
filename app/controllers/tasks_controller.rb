@@ -12,18 +12,26 @@ class TasksController < ApplicationController
       tasks = index_tasks.sort_priority_up
     elsif params[:sort_priority_down]
       tasks = index_tasks.sort_priority_down
-    elsif params[:search].nil?
-      tasks = index_tasks.recent
-    elsif params[:search][:name].blank? && params[:search][:status].blank?
-      tasks = index_tasks.recent
-    else
-      if params[:search][:name].present? && params[:search][:status].present?
+    elsif params[:search].present?
+      if params[:search][:name].present? && params[:search][:status].present? && params[:search][:label_id].present?
+        tasks = index_tasks.search_name(params[:search][:name]).search_status(params[:search][:status]).search_label(params[:search][:label_id])
+      elsif params[:search][:name].present? && params[:search][:status].present?
         tasks = index_tasks.search_name(params[:search][:name]).search_status(params[:search][:status])
+      elsif params[:search][:name].present? && params[:search][:label_id].present?
+        tasks = index_tasks.search_name(params[:search][:name]).search_label(params[:search][:label_id])
+      elsif params[:search][:status].present? && params[:search][:label_id].present?
+        tasks = index_tasks.search_status(params[:search][:status]).search_label(params[:search][:label_id])
       elsif params[:search][:name].present?
         tasks = index_tasks.search_name(params[:search][:name])
       elsif params[:search][:status].present?
         tasks = index_tasks.search_status(params[:search][:status])
+      elsif params[:search][:label_id].present?
+        tasks = index_tasks.search_label(params[:search][:label_id])
+      else
+        tasks = index_tasks.recent
       end
+    else
+      tasks = index_tasks.recent
     end
     @tasks = tasks.page(params[:page])
   end
