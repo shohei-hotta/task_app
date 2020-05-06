@@ -68,10 +68,10 @@ describe "ユーザ一機能", type: :system do
         fill_in "メールアドレス", with: "admin@example.com"
         fill_in "パスワード", with: "password"
         click_button "ログイン"
-        click_link "管理画面"
+        click_link "ユーザー管理"
       end
 
-      it "管理者権限を持つユーザ一は管理画面に遷移できる" do
+      it "管理者権限を持つユーザ一はユーザー管理画面に遷移できる" do
         expect(page).to have_content "ユーザー一覧"
       end
 
