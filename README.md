@@ -27,7 +27,7 @@ FK：foreign_key
 |password_digest|string |
 |admin          |boolean|
 
-### groupsテーブル
+### labellingsテーブル
 
 |column      |type   |
 |------------|-------|

@@ -21,9 +21,14 @@ ja:
       headline_edit: ユーザ一編集
       task_count: タスクの数
       task_index: が登録しているタスク
-      link_admin: 管理画面
+      link_admin: ユーザー管理
       admin_user: あり
       general_user: なし
+    label:
+      headline_index: ラベル一覧
+      headline_new: ラベル登録
+      headline_edit: ラベル編集
+      link_admin: ラベル管理
     session:
       headline_new: ログイン
       button_login: ログイン

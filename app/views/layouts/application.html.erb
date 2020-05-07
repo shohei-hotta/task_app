@@ -15,6 +15,7 @@
       <ul class="navbar-nav ml-auto">
         <% if logged_in? %>
           <% if current_user.admin? %>
+            <li class="nav-item"><%= link_to "#{t("view.label.link_admin")}", admin_labels_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to "#{t("view.user.link_admin")}", admin_users_path, class: "nav-link" %></li>
           <% end %>
           <li class="nav-item"><%= link_to "#{t("view.task.headline_index")}", tasks_path, class: "nav-link" %></li>

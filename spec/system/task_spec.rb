@@ -3,8 +3,13 @@ require "rails_helper"
 describe "タスク管理機能", type: :system do
   before do
     @user_a = create(:user, name: "ユーザーA", email: "a@example.com")
+    @label_a = create(:label)
+    @label_b = create(:label, name: "ラベルB")
+    create(:label, name: "ラベルC")
     @task = create(:task, user: @user_a)
-    create(:task, name: "次のタスク", deadline: "2020-04-30", status: "完了", priority: "低", user: @user_a)
+    create(:labelling, task: @task, label: @label_a)
+    @next_task = create(:task, name: "次のタスク", deadline: "2020-04-30", status: "完了", priority: "低", user: @user_a)
+    create(:labelling, task: @next_task, label: @label_b)
   end
 
   describe "タスク一覧表示機能" do
@@ -52,9 +57,16 @@ describe "タスク管理機能", type: :system do
         expect(page).to have_no_content "最初のタスク"
       end
 
-      it "検索フォームで名称と進捗の両方で検索できる" do
+      it "検索フォームでラベル検索できる" do
+        select "ラベルA", from: "search_form_label"
+        click_button "検索"
+        expect(page).to have_no_content "次のタスク"
+      end
+
+      it "検索フォームで名称と進捗とラベルで同時に検索できる" do
         fill_in "名称を入力してください", with: "次"
         select "未着手", from: "search_form_status"
+        select "ラベルC", from: "search_form_label"
         click_button "検索"
         expect(page).to have_no_content "最初のタスク"
         expect(page).to have_no_content "次のタスク"
@@ -78,12 +90,14 @@ describe "タスク管理機能", type: :system do
         fill_in "終了期限", with: "04/28/2020"
         select "着手中", from: "進捗"
         select "高", from: "優先順位"
+        check "ラベルA"
         click_button "登録する"
         expect(page).to have_content "新規タスク"
         expect(page).to have_content "新規タスクの説明"
         expect(page).to have_content "2020年04月28日"
         expect(page).to have_content "着手中"
         expect(page).to have_content "高"
+        expect(page).to have_content "ラベルA"
       end
     end
   end
