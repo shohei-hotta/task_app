@@ -8,10 +8,10 @@
     <%= f.text_field :name, placeholder: "名称を入力してください", class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.select :status, { 未着手: "未着手", 着手中: "着手中", 完了: "完了" }, { include_blank: true }, { id: "search_form_status" } %>
+    <%= f.select :status, { 未着手: "未着手", 着手中: "着手中", 完了: "完了" }, { prompt: "進捗" }, { id: "search_form_status" } %>
   </div>
   <div class="form-group">
-    <%= f.select :label_id, Label.pluck(:name, :id), { include_blank: true }, { id: "search_form_label" } %>
+    <%= f.select :label_id, Label.pluck(:name, :id), { prompt: "ラベル名" }, { id: "search_form_label" } %>
   </div>
   <%= f.submit t("view.task.button_search"), class: "btn btn-primary" %>
 <% end %>
